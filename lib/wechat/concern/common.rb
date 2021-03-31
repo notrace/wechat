@@ -240,7 +240,7 @@ module Wechat
       end
 
       def card_list(openid, card_id)
-        client.get 'user/getcardlist',JSON.generate(openid: openid, card_id:card_id)
+        card_get 'user/getcardlist',JSON.generate(openid: openid, card_id:card_id)
       end
 
     end
