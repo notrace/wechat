@@ -11,6 +11,7 @@ module Wechat
     DATACUBE_BASE = 'https://api.weixin.qq.com/datacube/'
     TCB_BASE = 'https://api.weixin.qq.com/tcb/'
     QYAPI_BASE = 'https://qyapi.weixin.qq.com/cgi-bin/'
+    CARD_BASE = 'https://qyapi.weixin.qq.com/card/'
 
     def callbackip
       get 'getcallbackip'
@@ -45,6 +46,12 @@ module Wechat
     end
 
     protected
+
+    def card_get(path, headers = {})
+      with_access_token(headers[:params]) do |params|
+        client.get path, headers.merge(params: params), base: Wechat::Api::CARD_BASE
+      end
+    end
 
     def get(path, headers = {})
       with_access_token(headers[:params]) do |params|

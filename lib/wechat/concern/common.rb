@@ -238,6 +238,11 @@ module Wechat
       def web_userinfo(web_access_token, openid, lang = 'zh_CN')
         client.get 'userinfo', params: { access_token: web_access_token, openid: openid, lang: lang }, base: Wechat::Api::OAUTH2_BASE
       end
+
+      def card_list(openid, card_id)
+        client.get 'user/getcardlist',JSON.generate(openid: openid, card_id:card_id)
+      end
+
     end
   end
 end
